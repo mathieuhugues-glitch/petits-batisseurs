@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#bde0fe">
+<title>Petits bâtisseurs - Télé</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏰</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="toprow" id="tg"></div>
+<section id="lobby" class="screen">
+  <h1 class="title">Petits <span class="b">bâtisseurs</span></h1>
+  <div class="screen tv-lobby" style="position:static;flex:0">
+    <div class="qrbox"><div class="qr" id="qr"><div class="wait">📡</div></div><div class="code" id="code">····</div><div class="small" id="joinUrl"></div><div class="netwarn" id="netWarn"></div></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4vmin">
+      <div class="joined" id="joined"><div class="wait">📱 ➜ 📷</div></div>
+      <button class="bigbtn green" id="startBtn" disabled>▶</button>
+      <a class="bigbtn blue" id="soloBtn" href="solo.html" style="text-decoration:none">📱 Jouer seul</a>
+    </div>
+  </div>
+</section>
+<section id="game" class="screen hidden">
+  <div class="hud"><span id="dots"></span></div>
+  <div class="tvgame" id="cols"></div>
+  <div class="party hidden" id="party"><div class="bname" id="bname"></div></div>
+</section>
+<section id="cityScr" class="screen hidden">
+  <div class="stars" id="cityStars"></div>
+  <div id="city"></div>
+  <button class="bigbtn" id="again">🔁</button>
+</section>
+<script src="vendor/peerjs.min.js"></script>
+<script src="vendor/qrcode.js"></script>
+<script src="js/net.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/buildings.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/host.js"></script>
+</body>
+</html>

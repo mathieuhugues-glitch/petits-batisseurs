@@ -1,0 +1,86 @@
+@import url(fonts.css);
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; overflow: hidden; overscroll-behavior: none; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+body { font-family: 'Rubik', 'Arial Rounded MT Bold', system-ui, sans-serif; font-weight: 800; color: #3b2f6b;
+  background: linear-gradient(180deg, #bde0fe 0%, #e0f2ff 60%, #fff5d6 100%); }
+button { font-family: inherit; font-weight: 800; border: 0; cursor: pointer; color: inherit; touch-action: manipulation; }
+.screen { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3vmin; padding: 2vmin; }
+.hidden { display: none !important; }
+.title { font-size: clamp(32px, 7vmin, 90px); color: #ff6b6b; text-shadow: 0 4px 0 #fff, 0 7px 0 rgba(0,0,0,.08); margin: 0; letter-spacing: 1px; text-align: center; }
+.title .b { color: #4cc9f0; }
+.bigbtn { background: #ffd166; border-radius: 4vmin; padding: 2.5vmin 5vmin; font-size: clamp(28px, 6vmin, 72px); box-shadow: 0 1.2vmin 0 #e0a800; transition: transform .08s; display: inline-flex; align-items: center; gap: 2vmin; }
+.bigbtn:active { transform: translateY(.8vmin); box-shadow: 0 .4vmin 0 #e0a800; }
+.bigbtn.green { background: #80ed99; box-shadow: 0 1.2vmin 0 #38b000; }
+.bigbtn.blue { background: #4cc9f0; box-shadow: 0 1.2vmin 0 #168aad; color: #fff; }
+.bigbtn[disabled] { opacity: .4; }
+.round { width: clamp(56px, 11vmin, 110px); height: clamp(56px, 11vmin, 110px); border-radius: 50%; background: #fff; font-size: clamp(28px, 6vmin, 56px); box-shadow: 0 .8vmin 0 rgba(0,0,0,.12); display: inline-flex; align-items: center; justify-content: center; }
+.round.on { background: #ffd166; }
+.avatars { display: flex; gap: 6vmin; flex-wrap: wrap; justify-content: center; }
+.av { display: flex; flex-direction: column; align-items: center; gap: 1vmin; background: #fff; border-radius: 5vmin; padding: 2.5vmin 3vmin; box-shadow: 0 1.2vmin 0 rgba(0,0,0,.1); font-size: clamp(24px, 5vmin, 56px); }
+.av svg { width: clamp(110px, 30vmin, 320px); height: clamp(110px, 30vmin, 320px); }
+.av:active { transform: scale(.96); }
+.av.lovisa { color: #9d4edd; } .av.linnea { color: #f77f00; }
+.toprow { position: fixed; top: 1.5vmin; right: 1.5vmin; display: flex; gap: 1.5vmin; z-index: 5; }
+.topleft { position: fixed; top: 1.5vmin; left: 1.5vmin; display: flex; gap: 1.5vmin; z-index: 5; align-items: center; }
+.flag { font-size: clamp(26px, 5vmin, 50px); }
+/* game screen */
+#game { justify-content: flex-start; padding-top: calc(clamp(56px, 11vmin, 110px) + 3vmin); }
+.hud { position: fixed; top: 1.5vmin; left: 50%; transform: translateX(-50%); display: flex; gap: 2vmin; align-items: center; font-size: clamp(22px, 5vmin, 48px); z-index: 4; }
+.dots { display: flex; gap: 1vmin; } .dots i { width: 2.6vmin; height: 2.6vmin; min-width: 14px; min-height: 14px; border-radius: 50%; background: #fff; display: block; box-shadow: inset 0 0 0 3px #c9c2ec; }
+.dots i.ok { background: #ffd166; box-shadow: none; } .dots i.cur { box-shadow: inset 0 0 0 4px #ff6b6b; }
+.mini-av { width: clamp(44px, 9vmin, 90px); height: clamp(44px, 9vmin, 90px); }
+.stage { flex: 1; width: 100%; min-height: 0; position: relative; }
+/* builder */
+.builder { position: absolute; inset: 0; display: flex; gap: 2vmin; }
+@media (orientation: landscape) { .builder { flex-direction: row; } .board-wrap { height: 100%; aspect-ratio: 1; max-width: 62%; } .tray { flex: 1; } }
+@media (orientation: portrait) { .builder { flex-direction: column; } .board-wrap { width: 100%; aspect-ratio: 1; max-height: 62%; align-self: center; } .tray { flex: 1; } }
+.board-wrap { position: relative; background: #fff; border-radius: 4vmin; box-shadow: 0 1vmin 0 rgba(0,0,0,.08); }
+.board { width: 100%; height: 100%; display: block; }
+.board .ground { fill: #80ed99; }
+.board .sil { transition: opacity .8s; }
+.builder.done .board .sil, .builder.done .hints { opacity: 0; }
+.builder.done .placed { animation: alive 1.2s ease-out .2s both; transform-origin: 50% 100%; transform-box: fill-box; }
+@keyframes alive { 0% { transform: scale(1); } 30% { transform: scale(1.08, .92); } 55% { transform: scale(.95, 1.07); } 80% { transform: scale(1.02, .98); } 100% { transform: scale(1); } }
+.pc.snapin { animation: snapin .35s ease-out; transform-box: fill-box; transform-origin: center; }
+@keyframes snapin { 0% { opacity: .3; } 60% { opacity: 1; } 100% { opacity: 1; } }
+.tray { display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 1.5vmin; background: rgba(255,255,255,.55); border-radius: 4vmin; padding: 1.5vmin; min-height: 0; min-width: 0; overflow: hidden; }
+.tp { position: relative; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 2.5vmin; box-shadow: 0 .7vmin 0 rgba(0,0,0,.1); touch-action: none; }
+.tp.lifted { opacity: .25; }
+.tp .rot { position: absolute; right: 4px; bottom: 2px; font-size: clamp(16px, 3vmin, 28px); color: #9d8fd6; pointer-events: none; }
+.tp svg { pointer-events: none; overflow: visible; }
+.tp.wiggle { animation: wig .6s; } @keyframes wig { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); } }
+.ghost { position: fixed; left: 0; top: 0; z-index: 50; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0,0,0,.25)); }
+.ghost.back { transition: transform .25s ease-in, opacity .25s; opacity: .3; }
+.ghost svg { overflow: visible; display: block; }
+.fx { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.spark { position: absolute; color: #ffd166; font-size: 22px; transform: translate(-50%, -50%); animation: spark 1s ease-out forwards; text-shadow: 0 0 4px #fff; }
+.spark.big { font-size: 46px; animation-duration: 1.4s; }
+@keyframes spark { to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(.4); opacity: 0; } }
+/* celebration overlay */
+.party { position: fixed; inset: 0; background: rgba(255,255,255,.0); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 4vmin; gap: 2vmin; z-index: 20; pointer-events: none; }
+.party > * { pointer-events: auto; }
+.party .bname { font-size: clamp(30px, 7vmin, 80px); color: #ff6b6b; background: #fff; border-radius: 4vmin; padding: 1vmin 4vmin; box-shadow: 0 1vmin 0 rgba(0,0,0,.08); animation: pop .5s ease-out; }
+@keyframes pop { 0% { transform: scale(.3); } 70% { transform: scale(1.1); } 100% { transform: scale(1); } }
+/* city */
+.city { width: min(96vw, 160vmin); max-height: 60vh; border-radius: 4vmin; box-shadow: 0 1vmin 0 rgba(0,0,0,.08); }
+.city .cb { animation: rise .7s ease-out both; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes rise { from { transform: translateY(14px) scaleY(.1); opacity: 0; } to { transform: none; opacity: 1; } }
+.stars { font-size: clamp(28px, 7vmin, 70px); }
+/* TV */
+.tv-lobby { flex-direction: row; gap: 5vmin; }
+.qrbox { background: #fff; border-radius: 4vmin; padding: 3vmin; display: flex; flex-direction: column; align-items: center; gap: 1.5vmin; box-shadow: 0 1.2vmin 0 rgba(0,0,0,.08); }
+.qr { width: 38vmin; height: 38vmin; } .qr svg { width: 100%; height: 100%; }
+.code { font-size: 9vmin; letter-spacing: 1.5vmin; color: #4cc9f0; }
+.small { font-size: clamp(14px, 2.2vmin, 22px); font-weight: 500; color: #6d64a3; text-align: center; }
+.joined { display: flex; gap: 3vmin; min-height: 20vmin; align-items: center; }
+.joined .av svg { width: 16vmin; height: 16vmin; } .joined .av { font-size: 3.5vmin; padding: 1.5vmin 2vmin; animation: pop .4s; }
+.tvgame { display: flex; gap: 3vmin; width: 100%; flex: 1; align-items: stretch; justify-content: center; min-height: 0; }
+.tvcol { flex: 1; max-width: 70vh; display: flex; flex-direction: column; align-items: center; gap: 1.5vmin; background: rgba(255,255,255,.55); border-radius: 4vmin; padding: 2vmin; font-size: 4vmin; }
+.tvcol .bsvg { width: 100%; flex: 1; min-height: 0; background: #fff; border-radius: 3vmin; }
+.tvcol.target .bsvg .sil { opacity: 1; }
+.tvcol .who { display: flex; align-items: center; gap: 1.5vmin; } .tvcol .who svg { width: 8vmin; height: 8vmin; }
+.tvcol.fin { box-shadow: 0 0 0 1vmin #ffd166; }
+.bsvg .pc { animation: snapin .4s; }
+.tvcol.fin .bsvg .sil { opacity: 0; transition: opacity .8s; }
+.wait { font-size: 6vmin; animation: bob 1.4s ease-in-out infinite; } @keyframes bob { 50% { transform: translateY(-1.5vmin); } }
+.netwarn { color: #d62828; font-size: 2.2vmin; font-weight: 500; max-width: 40vmin; text-align: center; }

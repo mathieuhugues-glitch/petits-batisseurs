@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#bde0fe">
+<title>Petits bâtisseurs</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏰</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<section id="conn" class="screen"><div class="wait" style="font-size:16vmin">📡</div><div class="small" id="connTxt"></div></section>
+<section id="pick" class="screen hidden"><div class="avatars" id="avs"></div></section>
+<section id="lobby" class="screen hidden"><div id="meBig"></div><button class="bigbtn green" id="startBtn">▶</button><button class="round" id="swap" aria-label="Changer">🔄</button></section>
+<section id="game" class="screen hidden">
+  <div class="topleft"><span id="who"></span></div>
+  <div class="hud"><span id="dots"></span><span id="stars">⭐ 0</span></div>
+  <div class="toprow"><button class="round" id="sayAgain" aria-label="Répéter">🗣️</button></div>
+  <div class="stage" id="stage"></div>
+  <div class="party hidden" id="party"><div class="bname" id="bname"></div><button class="bigbtn green hidden" id="next">▶</button></div>
+</section>
+<section id="cityScr" class="screen hidden">
+  <div class="stars" id="cityStars"></div>
+  <div id="city"></div>
+  <button class="bigbtn" id="again">🔁</button>
+</section>
+<script src="vendor/peerjs.min.js"></script>
+<script src="js/net.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/buildings.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/builder.js"></script>
+<script src="js/play.js"></script>
+</body>
+</html>
